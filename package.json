@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "serve": "webpack-dev-server",
     "lint:js": "eslint ./src/js/**/*.ts"
   },
   "devDependencies": {
