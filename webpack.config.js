@@ -36,5 +36,10 @@ module.exports = {
     hot: true,
     port: 3456
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebpackPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(src, "html/index.html")
+    })
+  ]
 };
