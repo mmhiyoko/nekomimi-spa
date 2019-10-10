@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "serve": "webpack-dev-server",
-    "lint:js": "eslint ./src/js/**/*.ts"
+    "lint:js": "eslint ./src/js/**/*.tsx"
   },
   "devDependencies": {
     "@types/react": "^16.9.5",
