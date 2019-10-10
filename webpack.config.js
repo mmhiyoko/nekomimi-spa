@@ -10,7 +10,8 @@ module.exports = {
   entry: path.resolve(src, "js/index.tsx"),
   output: {
     path: dist,
-    filename: "app.bundle.js"
+    filename: "app.bundle.js",
+    publicPath: "/"
   },
   resolve: {
     modules: ["node_modules"],
