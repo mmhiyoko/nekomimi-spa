@@ -7,9 +7,12 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint:js": "eslint ./src/js/**/*.ts"
+    "serve": "webpack-dev-server",
+    "lint:js": "eslint ./src/js/**/*.tsx"
   },
   "devDependencies": {
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^2.3.2",
     "@typescript-eslint/parser": "^2.3.2",
     "eslint": "6.1.0",
@@ -20,10 +23,16 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.18.2",
-    "typescript": "^3.6.3"
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
-    "react": "^16.10.1"
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   }
 }
