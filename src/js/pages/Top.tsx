@@ -21,7 +21,7 @@ const TopPage = () => {
       <ul>
         {searchResult.length === 0 && <li>No Results</li>}
         {searchResult.map(item => (
-          <li key={item}>{item}</li>
+          <li key={item.etag}>{item.snippet.title}</li>
         ))}
       </ul>
     </>
