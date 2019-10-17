@@ -10,7 +10,7 @@ const TopPage = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
-  const handleClick = async () => {
+  const search = async () => {
     try {
       setIsError(false);
       setIsFetching(true);
@@ -29,7 +29,7 @@ const TopPage = () => {
       <button
         type="button"
         disabled={searchValue.trim().length === 0 || isFetching}
-        onClick={handleClick}
+        onClick={search}
       >
         検索
       </button>
@@ -37,6 +37,7 @@ const TopPage = () => {
         isFetching={isFetching}
         isError={isError}
         searchResults={searchResults}
+        onRetry={search}
       />
     </>
   );
