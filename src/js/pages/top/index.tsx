@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ApiClint, { SearchResult } from "../../utils/ApiClient";
 import SearchList from "./SearchList";
+import SearchBar from "./SearchBar";
 
 const TopPage = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -25,14 +26,12 @@ const TopPage = () => {
   return (
     <>
       <h1>Top Page</h1>
-      <input type="text" value={searchValue} onChange={handleChange} />
-      <button
-        type="button"
-        disabled={searchValue.trim().length === 0 || isFetching}
-        onClick={search}
-      >
-        検索
-      </button>
+      <SearchBar
+        isDisabled={isFetching}
+        value={searchValue}
+        onChange={handleChange}
+        onRequestSearch={search}
+      />
       <SearchList
         isFetching={isFetching}
         isError={isError}
