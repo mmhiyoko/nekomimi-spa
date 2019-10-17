@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ApiClint, { SearchResult } from "../../utils/ApiClient";
+import SearchList from "./SearchList";
 
 const TopPage = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
+  const [searchResults, setSearchResult] = useState<SearchResult[]>([]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -32,14 +33,11 @@ const TopPage = () => {
       >
         検索
       </button>
-      <ul>
-        {isFetching && <li>Loading...</li>}
-        {isError && <li>Error Occured</li>}
-        {searchResult.length === 0 && <li>No Results</li>}
-        {searchResult.map(item => (
-          <li key={item.etag}>{item.snippet!.title}</li>
-        ))}
-      </ul>
+      <SearchList
+        isFetching={isFetching}
+        isError={isError}
+        searchResults={searchResults}
+      />
     </>
   );
 };
