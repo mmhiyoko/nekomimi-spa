@@ -11,6 +11,7 @@
     "lint:js": "eslint ./src/js/**/*.{ts,tsx}"
   },
   "devDependencies": {
+    "@types/gapi.client.youtube": "^3.0.1",
     "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "@types/react-router-dom": "^5.1.0",
