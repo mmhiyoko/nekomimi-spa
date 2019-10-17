@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ApiClint, { SearchResult } from "../utils/ApiClient";
+import ApiClint, { SearchResult } from "../../utils/ApiClient";
 
 const TopPage = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
