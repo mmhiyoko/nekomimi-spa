@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ApiClint from "../utils/ApiClient";
+import ApiClint, { SearchResult } from "../utils/ApiClient";
 
 const TopPage = () => {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<any[]>([]);
+  const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -21,7 +21,7 @@ const TopPage = () => {
       <ul>
         {searchResult.length === 0 && <li>No Results</li>}
         {searchResult.map(item => (
-          <li key={item.etag}>{item.snippet.title}</li>
+          <li key={item.etag}>{item.snippet!.title}</li>
         ))}
       </ul>
     </>
