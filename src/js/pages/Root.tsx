@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import TopPage from "./Top";
+import TopPage from "./top";
 
 const RootPage = () => {
   return (
