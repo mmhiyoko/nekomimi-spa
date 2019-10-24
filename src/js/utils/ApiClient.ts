@@ -13,6 +13,7 @@ export default class ApiClint {
         params: {
           q,
           part: "snippet",
+          type: "video",
           key: YOUTUBE_API_KEY
         }
       }

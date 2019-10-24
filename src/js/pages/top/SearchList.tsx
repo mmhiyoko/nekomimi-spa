@@ -1,5 +1,7 @@
 import React from "react";
 import { SearchResult } from "../../utils/ApiClient";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 type Props = {
   isFetching: boolean;
@@ -24,13 +26,39 @@ const SearchList = (props: Props) => {
     );
   }
   return (
-    <ul>
+    <List>
       {searchResults.length === 0 && <li>No Results</li>}
       {searchResults.map(item => (
-        <li key={item.etag}>{item.snippet!.title}</li>
+        <ListItem key={item.etag}>
+          <Thumbnail>
+            <img
+              src={item.snippet!.thumbnails!.default!.url}
+              alt={item.snippet!.title}
+            />
+          </Thumbnail>
+          <Link to={`/watch/${item.id!.videoId}`}>
+            <h3>{item.snippet!.title}</h3>
+          </Link>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
+
+const List = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  align-items: center;
+`;
+
+const Thumbnail = styled.div`
+  width: 120px;
+  margin-right: 10px;
+`;
 
 export default SearchList;

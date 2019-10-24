@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ApiClint, { SearchResult } from "../../utils/ApiClient";
 import SearchList from "./SearchList";
 import SearchBar from "./SearchBar";
+import styled from "styled-components";
 
 const TopPage = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -25,7 +26,7 @@ const TopPage = () => {
   };
   return (
     <>
-      <h1>Top Page</h1>
+      <Heading>Top Page</Heading>
       <SearchBar
         isDisabled={isFetching}
         value={searchValue}
@@ -41,5 +42,10 @@ const TopPage = () => {
     </>
   );
 };
+
+const Heading = styled.h1`
+  font-size: 2rem;
+  color: red;
+`;
 
 export default TopPage;
