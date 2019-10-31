@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import ApiClint, { SearchResult } from "../../utils/ApiClient";
 import SearchList from "./SearchList";
 import SearchBar from "./SearchBar";
-import styled from "styled-components";
 
 const TopPage = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);

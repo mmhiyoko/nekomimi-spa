@@ -25,7 +25,6 @@ const WatchPage = (props: Props) => {
   useEffect(() => {
     fetchVideo();
   }, []);
-  console.log(video);
   return <h1>{`Watch Page ${videoId}`}</h1>;
 };
 

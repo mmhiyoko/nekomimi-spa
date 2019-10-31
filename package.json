@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "serve": "webpack-dev-server",
-    "lint:js": "eslint ./src/js/**/*.{ts,tsx}"
+    "lint:js": "eslint ./src/js/**/*.{ts,tsx}",
+    "lint:js:fix": "eslint ./src/js/**/*.{ts,tsx} --fix"
   },
   "devDependencies": {
     "@types/gapi.client.youtube": "^3.0.1",

@@ -1,7 +1,7 @@
 import React from "react";
-import { SearchResult } from "../../utils/ApiClient";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { SearchResult } from "../../utils/ApiClient";
 
 type Props = {
   isFetching: boolean;
