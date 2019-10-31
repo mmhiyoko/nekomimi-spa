@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import ApiClint, { Video } from "../../utils/ApiClient";
 import VideoPlayer from "./organisms/VideoPlayer";
+import VideoDetails from "./organisms/VideoDetails";
 
 type Params = {
   id: string;
@@ -48,6 +49,7 @@ const WatchPage = (props: Props) => {
     <>
       <h1>{`WatchPage: ${videoId}`}</h1>
       <VideoPlayer player={video.player!} />
+      <VideoDetails snippet={video.snippet!} />
     </>
   );
 };
