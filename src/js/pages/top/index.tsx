@@ -6,12 +6,12 @@ import SearchBar from "./SearchBar";
 import useFetchData from "../../utils/react/useFetchData";
 
 const TopPage = () => {
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchResults, setSearchResult] = useState<SearchResult[]>([]);
   const { isFetching, isError, fetchData: search } = useFetchData(async () => {
     const result = await ApiClint.search(searchValue);
     setSearchResult(result);
   });
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [searchResults, setSearchResult] = useState<SearchResult[]>([]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
