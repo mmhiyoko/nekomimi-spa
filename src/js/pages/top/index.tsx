@@ -3,26 +3,17 @@ import styled from "styled-components";
 import ApiClint, { SearchResult } from "../../utils/ApiClient";
 import SearchList from "./SearchList";
 import SearchBar from "./SearchBar";
+import useFetchData from "../../utils/react/useFetchData";
 
 const TopPage = () => {
-  const [isFetching, setIsFetching] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [searchResults, setSearchResult] = useState<SearchResult[]>([]);
+  const { isFetching, isError, fetchData: search } = useFetchData(async () => {
+    const result = await ApiClint.search(searchValue);
+    setSearchResult(result);
+  });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
-  };
-  const search = async () => {
-    try {
-      setIsError(false);
-      setIsFetching(true);
-      const result = await ApiClint.search(searchValue);
-      setSearchResult(result);
-    } catch (e) {
-      setIsError(true);
-    } finally {
-      setIsFetching(false);
-    }
   };
   return (
     <>
