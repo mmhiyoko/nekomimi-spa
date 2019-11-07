@@ -7,29 +7,30 @@ import useFetchData from "../../utils/react/useFetchData";
 import { useSearchContext } from "../../organisms/SearchContextProvider";
 
 const TopPage = () => {
-  const contextValue = useSearchContext();
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [searchResults, setSearchResult] = useState<SearchResult[]>([]);
+  const {
+    value: { query, results },
+    setValue
+  } = useSearchContext();
   const { isFetching, isError, fetchData: search } = useFetchData(async () => {
-    const result = await ApiClint.search(searchValue);
-    setSearchResult(result);
+    const searchResults = await ApiClint.search(query);
+    setValue({ query, results: searchResults });
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value);
+    setValue({ results, query: e.currentTarget.value });
   };
   return (
     <>
       <Heading>Top Page</Heading>
       <SearchBar
         isDisabled={isFetching}
-        value={searchValue}
+        value={query}
         onChange={handleChange}
         onRequestSearch={search}
       />
       <SearchList
         isFetching={isFetching}
         isError={isError}
-        searchResults={searchResults}
+        searchResults={results}
         onRetry={search}
       />
     </>
