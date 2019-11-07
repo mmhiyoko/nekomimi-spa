@@ -4,8 +4,10 @@ import ApiClint, { SearchResult } from "../../utils/ApiClient";
 import SearchList from "./SearchList";
 import SearchBar from "./SearchBar";
 import useFetchData from "../../utils/react/useFetchData";
+import { useSearchContext } from "../../organisms/SearchContextProvider";
 
 const TopPage = () => {
+  const contextValue = useSearchContext();
   const [searchValue, setSearchValue] = useState<string>("");
   const [searchResults, setSearchResult] = useState<SearchResult[]>([]);
   const { isFetching, isError, fetchData: search } = useFetchData(async () => {
