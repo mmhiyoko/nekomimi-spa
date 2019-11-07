@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ApiClint, { SearchResult } from "../../utils/ApiClient";
+import ApiClint from "../../utils/ApiClient";
 import SearchList from "./SearchList";
 import SearchBar from "./SearchBar";
 import useFetchData from "../../utils/react/useFetchData";
 import { useSearchContext } from "../../organisms/SearchContextProvider";
 
 const TopPage = () => {
-  const {
-    value: { query, results },
-    setValue
-  } = useSearchContext();
+  const { value, setValue } = useSearchContext();
+  const { query, results } = value;
   const { isFetching, isError, fetchData: search } = useFetchData(async () => {
     const searchResults = await ApiClint.search(query);
-    setValue({ query, results: searchResults });
+    setValue({ ...value, results: searchResults });
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue({ results, query: e.currentTarget.value });
+    setValue({ ...value, query: e.currentTarget.value });
   };
   return (
     <>
