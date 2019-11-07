@@ -1,33 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ApiClint, { SearchResult } from "../../utils/ApiClient";
+import ApiClint from "../../utils/ApiClient";
 import SearchList from "./SearchList";
 import SearchBar from "./SearchBar";
 import useFetchData from "../../utils/react/useFetchData";
+import { useSearchContext } from "../../organisms/SearchContextProvider";
 
 const TopPage = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [searchResults, setSearchResult] = useState<SearchResult[]>([]);
+  const { value, setValue } = useSearchContext();
+  const { query, results } = value;
   const { isFetching, isError, fetchData: search } = useFetchData(async () => {
-    const result = await ApiClint.search(searchValue);
-    setSearchResult(result);
+    const searchResults = await ApiClint.search(query);
+    setValue(state => ({ ...state, results: searchResults }));
   });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value);
-  };
   return (
     <>
       <Heading>Top Page</Heading>
       <SearchBar
         isDisabled={isFetching}
-        value={searchValue}
-        onChange={handleChange}
+        value={query}
         onRequestSearch={search}
       />
       <SearchList
         isFetching={isFetching}
         isError={isError}
-        searchResults={searchResults}
+        searchResults={results}
         onRetry={search}
       />
     </>
