@@ -1,17 +1,21 @@
 import React from "react";
+import { useSearchContext } from "../../organisms/SearchContextProvider";
 
 type Props = {
   isDisabled: boolean;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onRequestSearch: () => void;
 };
 
 const SearchBar = (props: Props) => {
-  const { isDisabled, value, onChange, onRequestSearch } = props;
+  const { value: contextValue, setValue } = useSearchContext();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue({ ...contextValue, query: e.currentTarget.value });
+  };
+  const { isDisabled, value, onRequestSearch } = props;
   return (
     <>
-      <input type="text" value={value} onChange={onChange} />
+      <input type="text" value={value} onChange={handleChange} />
       <button
         type="button"
         disabled={value.trim().length === 0 || isDisabled}

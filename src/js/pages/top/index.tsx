@@ -11,18 +11,14 @@ const TopPage = () => {
   const { query, results } = value;
   const { isFetching, isError, fetchData: search } = useFetchData(async () => {
     const searchResults = await ApiClint.search(query);
-    setValue({ ...value, results: searchResults });
+    setValue(state => ({ ...state, results: searchResults }));
   });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue({ ...value, query: e.currentTarget.value });
-  };
   return (
     <>
       <Heading>Top Page</Heading>
       <SearchBar
         isDisabled={isFetching}
         value={query}
-        onChange={handleChange}
         onRequestSearch={search}
       />
       <SearchList
