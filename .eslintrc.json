@@ -9,6 +9,9 @@
     "browser": true,
     "es6": true
   },
+  "globals": {
+    "YT": "readonly"
+  },
   "settings": {
     "import/resolver": {
       "node": {
