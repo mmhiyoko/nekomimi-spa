@@ -12,7 +12,7 @@ const YTPlayer = () => {
   }
   return ReactDOM.createPortal(
     <Wrapper>
-      <div id={YTPLAYER_ID} />
+      <Player id={YTPLAYER_ID} />
     </Wrapper>,
     targetEl
   );
@@ -20,11 +20,16 @@ const YTPlayer = () => {
 
 const Wrapper = styled.div`
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
   z-index: 9999;
-  line-height: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  background-color: #eee;
+`;
+
+const Player = styled.div`
+  visibility: hidden;
 `;
 
 export default YTPlayer;
