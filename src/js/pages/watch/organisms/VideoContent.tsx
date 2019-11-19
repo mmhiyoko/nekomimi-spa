@@ -1,7 +1,7 @@
 import React from "react";
 import { Video } from "../../../utils/ApiClient";
-import VideoPlayer from "./VideoPlayer";
 import VideoDetails from "./VideoDetails";
+import PlayButton from "./PlayButton";
 
 type Props = {
   video: Video | null;
@@ -28,7 +28,7 @@ const VideoContent = (props: Props) => {
   console.log(video);
   return (
     <>
-      <VideoPlayer player={video.player!} />
+      <PlayButton videoId={video.id!} />
       <VideoDetails snippet={video.snippet!} />
     </>
   );
