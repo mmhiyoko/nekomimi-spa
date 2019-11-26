@@ -1,21 +1,27 @@
 import React, { useContext, useState, createContext, useEffect } from "react";
 import YTPlayer, { YTPLAYER_ID } from "./YTPlayer";
+import { PlayerState } from "../constants/PlayerState";
 
 type Props = {
   children: React.ReactNode;
   videoId: string;
 };
 
-const YTPlayerContext: React.Context<YT.Player | null> = createContext<any>(
-  null
-);
+type ContextValue = {
+  player: YTPlayerProvider | null;
+  playerState: PlayerState;
+};
+
+const YTPlayerContext: React.Context<ContextValue> = createContext<any>(null);
 
 export const useYTPlayer = () => useContext(YTPlayerContext);
 
 const YTPlayerProvider = (props: Props) => {
   const { children, videoId } = props;
   const [player, setPlayer] = useState<YT.Player | null>(null);
-
+  const [playerState, setPlayerState] = useState<PlayerState>(
+    PlayerState.UNSTARTED
+  );
   useEffect(() => {
     // @ts-ignore
     YT.ready(() => {
@@ -26,6 +32,9 @@ const YTPlayerProvider = (props: Props) => {
         events: {
           onReady: () => {
             setPlayer(playerInst);
+          },
+          onStateChange: (e: any) => {
+            setPlayerState(e.data as number); // @todo numberでいいのどうしてかいつか調べたい
           }
         }
       });
@@ -33,7 +42,7 @@ const YTPlayerProvider = (props: Props) => {
   });
 
   return (
-    <YTPlayerContext.Provider value={player}>
+    <YTPlayerContext.Provider value={{ player, playerState }}>
       {children}
       <YTPlayer />
     </YTPlayerContext.Provider>

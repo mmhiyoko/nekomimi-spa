@@ -7,7 +7,7 @@ type Props = {
 
 const PlayButton = (props: Props) => {
   const { videoId } = props;
-  const player = useYTPlayer();
+  const { player } = useYTPlayer();
   const handleClick = () => {
     if (player != null) {
       player.loadVideoById(videoId);

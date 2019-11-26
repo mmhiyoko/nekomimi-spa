@@ -4,6 +4,7 @@ import TopPage from "./top";
 import WatchPage from "./watch";
 import SearchContextProvider from "../organisms/SearchContextProvider";
 import YTPlayerProvider from "../organisms/YTPlayerProvider";
+import YTPlayerController from "../organisms/YTPlayerController";
 
 const RootPage = () => {
   return (
@@ -16,6 +17,7 @@ const RootPage = () => {
             <Route component={() => <h1>404</h1>} />
           </Switch>
         </SearchContextProvider>
+        <YTPlayerController />
       </YTPlayerProvider>
     </BrowserRouter>
   );
