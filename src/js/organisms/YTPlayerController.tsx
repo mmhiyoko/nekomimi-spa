@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useYTPlayer } from "./YTPlayerProvider";
-import { PlayerState } from "../constants/PlayerState";
+import PlayerState from "../constants/PlayerState";
 import IconButton from "../molecules/IconButton";
 
 const YTPlayerController = () => {
