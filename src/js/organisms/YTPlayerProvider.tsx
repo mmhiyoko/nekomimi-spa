@@ -16,6 +16,15 @@ const YTPlayerContext: React.Context<ContextValue> = createContext<any>(null);
 
 export const useYTPlayer = () => useContext(YTPlayerContext);
 
+const insertIFrameAPITag = () => {
+  const scriptEl = document.createElement("script");
+  scriptEl.src = "https://www.youtube.com/iframe_api";
+  scriptEl.async = true;
+  const firstScriptTag = document.getElementsByTagName("script")[0];
+  // eslint-disable-next-line
+  firstScriptTag.parentNode?.insertBefore(scriptEl, firstScriptTag);
+};
+
 const YTPlayerProvider = (props: Props) => {
   const { children, videoId } = props;
   const [player, setPlayer] = useState<YT.Player | null>(null);
@@ -23,8 +32,7 @@ const YTPlayerProvider = (props: Props) => {
     PlayerState.UNSTARTED
   );
   useEffect(() => {
-    // @ts-ignore
-    YT.ready(() => {
+    window.onYouTubeIframeAPIReady = () => {
       const playerInst = new YT.Player(YTPLAYER_ID, {
         videoId,
         width: 400,
@@ -38,8 +46,9 @@ const YTPlayerProvider = (props: Props) => {
           }
         }
       });
-    });
-  });
+    };
+    insertIFrameAPITag();
+  }, []);
 
   return (
     <YTPlayerContext.Provider value={{ player, playerState }}>
