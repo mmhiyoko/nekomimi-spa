@@ -8,7 +8,7 @@ type Props = {
 };
 
 type ContextValue = {
-  player: YTPlayerProvider | null;
+  player: YT.Player | null;
   playerState: PlayerState;
 };
 
