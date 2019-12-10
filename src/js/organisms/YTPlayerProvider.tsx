@@ -1,6 +1,6 @@
 import React, { useContext, useState, createContext, useEffect } from "react";
 import YTPlayer, { YTPLAYER_ID } from "./YTPlayer";
-import PlayerState from "../constants/PlayerState";
+import { PlayerState } from "../constants/PlayerState";
 
 type Props = {
   children: React.ReactNode;

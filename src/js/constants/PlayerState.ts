@@ -1,4 +1,4 @@
-const enum PlayerState {
+export const enum PlayerState {
   UNSTARTED = -1,
   ENDED = 0,
   PLAYING = 1,
@@ -6,5 +6,3 @@ const enum PlayerState {
   BUFFERING = 3,
   CUED = 5
 }
-
-export default PlayerState;
