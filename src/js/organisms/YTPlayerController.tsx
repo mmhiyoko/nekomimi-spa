@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useYTPlayer } from "./YTPlayerProvider";
 import { PlayerState } from "../constants/PlayerState";
 import IconButton from "../molecules/IconButton";
+import YTSeekBar from "./YTSeekBar";
 
 const YTPlayerController = () => {
   const { player, playerState } = useYTPlayer();
@@ -27,6 +28,7 @@ const YTPlayerController = () => {
       >
         {isPlaying ? "pause" : "play_arrow"}
       </IconButton>
+      <YTSeekBar />
     </Wrapper>
   );
 };
