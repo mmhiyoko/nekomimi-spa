@@ -43,8 +43,5 @@
     "react-dom": "^16.10.2",
     "react-router-dom": "^5.1.2",
     "styled-components": "^4.4.0"
-  },
-  "resolutions": {
-    "serialize-javascript": "^2.1.1"
   }
 }

@@ -1,4 +1,5 @@
-const enum PlayerState {
+/* eslint-disable import/prefer-default-export */
+export const enum PlayerState {
   UNSTARTED = -1,
   ENDED = 0,
   PLAYING = 1,
@@ -6,5 +7,3 @@ const enum PlayerState {
   BUFFERING = 3,
   CUED = 5
 }
-
-export default PlayerState;

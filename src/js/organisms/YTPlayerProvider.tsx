@@ -1,6 +1,6 @@
 import React, { useContext, useState, createContext, useEffect } from "react";
 import YTPlayer, { YTPLAYER_ID } from "./YTPlayer";
-import PlayerState from "../constants/PlayerState";
+import { PlayerState } from "../constants/PlayerState";
 
 type Props = {
   children: React.ReactNode;
@@ -8,13 +8,22 @@ type Props = {
 };
 
 type ContextValue = {
-  player: YTPlayerProvider | null;
+  player: YT.Player | null;
   playerState: PlayerState;
 };
 
 const YTPlayerContext: React.Context<ContextValue> = createContext<any>(null);
 
 export const useYTPlayer = () => useContext(YTPlayerContext);
+
+const insertIFrameAPITag = () => {
+  const scriptEl = document.createElement("script");
+  scriptEl.src = "https://www.youtube.com/iframe_api";
+  scriptEl.async = true;
+  const firstScriptTag = document.getElementsByTagName("script")[0];
+  // eslint-disable-next-line
+  firstScriptTag.parentNode?.insertBefore(scriptEl, firstScriptTag);
+};
 
 const YTPlayerProvider = (props: Props) => {
   const { children, videoId } = props;
@@ -23,8 +32,7 @@ const YTPlayerProvider = (props: Props) => {
     PlayerState.UNSTARTED
   );
   useEffect(() => {
-    // @ts-ignore
-    YT.ready(() => {
+    window.onYouTubeIframeAPIReady = () => {
       const playerInst = new YT.Player(YTPLAYER_ID, {
         videoId,
         width: 400,
@@ -38,8 +46,9 @@ const YTPlayerProvider = (props: Props) => {
           }
         }
       });
-    });
-  });
+    };
+    insertIFrameAPITag();
+  }, []);
 
   return (
     <YTPlayerContext.Provider value={{ player, playerState }}>
