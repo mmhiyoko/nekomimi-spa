@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export const enum PlayerState {
   UNSTARTED = -1,
   ENDED = 0,
