@@ -32,7 +32,7 @@ const YTSeekBar = () => {
     }
   }, [player, playerState]);
   useEffect(() => {
-    if (player != null && playerState == PlayerState.PLAYING) {
+    if (player != null && playerState === PlayerState.PLAYING) {
       setDuration(Math.floor(player.getDuration()));
     }
   }, [player, playerState]);
