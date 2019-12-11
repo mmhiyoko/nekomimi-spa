@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useYTPlayer } from "./YTPlayerProvider";
 import { PlayerState } from "../constants/PlayerState";
-import { request } from "https";
 
 const YTSeekBar = () => {
   const { player, playerState } = useYTPlayer();
   const rafId = useRef<number | null>(null);
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const updateCurrentTime = useCallback((ytp: YT.Player) => () => {
-    setCurrentTime(Math.floor(ytp.getCurrentTime()) ?? 0);
-    requestAnimationFrame(updateCurrentTime(ytp));
-  },
-  []
-    );
+  const updateCurrentTime = useCallback(
+    (ytp: YT.Player) => () => {
+      setCurrentTime(Math.floor(ytp.getCurrentTime()) ?? 0);
+      requestAnimationFrame(updateCurrentTime(ytp));
+    },
+    []
+  );
   useEffect(() => {
     if (player != null) {
       if (playerState === PlayerState.PLAYING) {
@@ -31,11 +31,11 @@ const YTSeekBar = () => {
       }
     }
   }, [player, playerState]);
-  useEffect(() =>{
+  useEffect(() => {
     if (player != null && playerState == PlayerState.PLAYING) {
-      setDuration(Math.floor(player.getDuration()))
+      setDuration(Math.floor(player.getDuration()));
     }
-  }, [player, playerState])
+  }, [player, playerState]);
 
   return <h1>{`${currentTime}/${duration}`}</h1>;
 };
